@@ -1,17 +1,58 @@
-# flutter_widgets_domracheva
+# Лабораторная работа №4-5. Flutter: структура UI и компонентный подход
+---
+## ФИ: Домрачева Полина
 
-A new Flutter project.
+## Группа: ИСП-241
 
-## Getting Started
+## Дата сдачи: 09.10.26
+---
+## Что изучили
 
-This project is a starting point for a Flutter application.
+1. **Компонентный подход** — разбиение UI на отдельные классы-виджеты (`GradientContainer`, `StyledText`, `DiceRoller`) и вынос их в отдельные файлы.
+2. **StatelessWidget и StatefulWidget** — различия между статичными и изменяемыми виджетами, управление состоянием через `setState()`.
+3. **Работа с ресурсами (assets)** — подключение изображений в `pubspec.yaml` и отображение их через `Image.asset`.
+4. **Генерация случайных чисел** — использование `Random()` для создания случайного результата броска кубика.
+5. **Стилизация и компоновка** — использование `Container`, `BoxDecoration`, `LinearGradient`, `Column`, `TextButton`, `SizedBox` и `EdgeInsets` для создания адаптивного и привлекательного интерфейса.
 
-A few resources to get you started if this is your first Flutter project:
+## Скриншот финального приложения
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+![Roll Dice](img/step6_Domracheva.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Ссылка на репозиторий
+
+[Flutter_Widgets](https://github.com/chipollina/Flutter_Widgets.git)
+
+## Инструкция по запуску 
+1. Клонируйте репозиторий:
+git clone https://github.com/chipollina/Flutter_Widgets.git
+
+2.Переходите в папку проекта:
+cd Flutter_Widgets
+
+3.Установите зависимости:
+flutter pub get
+
+4.Запустите приложение в Chrome:
+flutter run -d chrome
+
+5.Для выхода из режима запуска, нажмите q в терминале.
+
+## Ответы на вопросы 
+
+#### 1. Зачем выносить виджеты в отдельные файлы? Что изменится если держать всё в main.dart?
+
+Если держать всё в main.dart, файл быстро станет огромным и в нём будет сложно что-то найти. Когда виджеты лежат в отдельных файлах, код удобнее читать, нужный кусок легко найти по имени файла, и один и тот же виджет можно использовать в разных местах, не копируя его. Eсли работают несколько человек, каждый правит свой файл и не мешает остальным.
+
+#### 2. Что такое BuildContext? Почему метод build() принимает его как параметр?
+
+BuildContext — это информация о том, где виджет находится в дереве. Через него виджет узнаёт про тему, размеры и окружение. Flutter передаёт его сам, и build() обязан его принимать — без него виджет не поймёт, где он и как его рисовать.
+
+#### 3. Чем StatelessWidget отличается от StatefulWidget? Приведите пример когда нужен каждый из них.
+
+StatelessWidget не хранит состояние и не меняется - подходит для статичного UI (текст, картинка, фон).
+
+StatefulWidget хранит состояние и умеет перерисовываться через setState(), когда что-то меняется - например, при нажатии кнопки.
+
+#### 4. Почему Random() создаётся на уровне файла, а не внутри rollDice()?
+
+Чтобы генератор создавался один раз, а не заново при каждом нажатии. Так эффективнее, и числа получаются нормально случайными - иначе при быстрых нажатиях они могли бы повторяться.
